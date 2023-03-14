@@ -6,3 +6,5 @@ class Users(models.Model):
     first_name = models.CharField(max_length=32, verbose_name='name')
     last_name = models.CharField(max_length=32, verbose_name='surname')
     email = models.EmailField(unique=True, verbose_name='email')
+
+
