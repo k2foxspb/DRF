@@ -1,5 +1,7 @@
-from config.users.models import Users
+
 from rest_framework import serializers
+
+from users.models import Users
 
 
 class UsersSerializer(serializers.HyperlinkedModelSerializer):
