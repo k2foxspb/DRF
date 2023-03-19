@@ -1,31 +1,31 @@
 import React from 'react'
 
-const UserItem = ({item}) => {
+const ProjectsItem = ({item}) => {
     return (
         <tr>
             <td>{item.id}</td>
             <td>{item.name}</td>
-            <td>{item.birthday_year}</td>
+            <td>{item.user.id}</td>
         </tr>
     )
 }
 
 
-const UserList = ({items}) => {
+const ProjectList = ({items}) => {
     return (
         <table>
             <th>
-                First name
+                Project name
             </th>
             <th>
-                Last Name
+                Users
             </th>
             <th>
-                Email
+                Project description
             </th>
-            {items.map((item) => <UserItem item={item}/>)}
+            {items.map((item) => <ProjectsItem item={item}/>)}
         </table>
     )
 }
 
-export default UserList
+export default ProjectList
