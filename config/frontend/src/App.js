@@ -1,7 +1,7 @@
 import React from 'react';
 import ProjectList from './components/Projects.js';
 import UserList from "./components/Users.js";
-import {BrowserRouter, HashRouter, Link, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 
 class App extends React.Component {
     constructor(props) {
@@ -24,8 +24,21 @@ class App extends React.Component {
         return (
             <div>
                 <BrowserRouter>
-                        <Route exact path='/' component={() => <UserList items={this.state.users}/>}/>
-                        <Route exact path='/projects' component={() => <ProjectList items={this.state.projects}/>}/>
+
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to='/'>Users</Link>
+                            </li>
+                            <li>
+                                <Link to='/projects'>Projects</Link>
+                            </li>
+                        </ul>
+                    </nav>
+                    <Routes>
+                        <Route exact path='/' Component={() => <UserList items={this.state.users}/>}/>
+                        <Route exact path='/projects' Component={() => <ProjectList items={this.state.projects}/>}/>
+                    </Routes>
                 </BrowserRouter>
             </div>
         )
