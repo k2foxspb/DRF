@@ -7,4 +7,7 @@ class Users(models.Model):
     last_name = models.CharField(max_length=32, verbose_name='surname')
     email = models.EmailField(unique=True, verbose_name='email')
 
+    def __str__(self):
+        return self.user_name
+
 
