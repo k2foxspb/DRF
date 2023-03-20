@@ -13,7 +13,7 @@ class StaffOnly(BasePermission):
 class UsersModelViewSet(ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
-    permission_classes = [StaffOnly]
+    # permission_classes = [StaffOnly]
 
     def get_serializer_class(self):
         if self.request.version == '0.2':
