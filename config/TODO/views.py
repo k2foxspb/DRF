@@ -2,7 +2,6 @@ from rest_framework.viewsets import ModelViewSet
 
 from TODO.models import Project, ToDo
 from TODO.serializers import ProjectSerializer, ToDoSerializer
-from users.views import StaffOnly
 
 
 class ProjectModelViewSet(ModelViewSet):
@@ -13,4 +12,3 @@ class ProjectModelViewSet(ModelViewSet):
 class ToDoModelViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
-    permission_classes =[StaffOnly]

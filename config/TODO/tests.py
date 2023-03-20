@@ -45,15 +45,10 @@ class TestAuthorViewSet(TestCase):
 class TestBookViewSet(APITestCase):
 
     def test_edit_mixer(self):
-        mixer.blend(Users)
+        user = mixer.blend(Users)
         User.objects.create_superuser('admin', 'admin@admin.com', 'admin123456')
         self.client.login(username='admin', password='admin123456')
-        response = self.client.put('/api/users/1/', {"user_name": "wtrthrgwg",
-                                                             "first_name": "wtrrthgwujrtg",
-                                                             "last_name": "wtrgrtghjhtr",
-                                                             "email": "fkrejqr@mail.com"})
+        response = self.client.put(f'/api/users/1/', {'user_name': 'kyio2fox'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # user = Users.objects.get(id=1)
-        # self.assertEqual(user.user_name, 'Руслан и Людмила')
-
-
+        user = Users.objects.get(id=1)
+        self.assertEqual(user.user_name, 'Руслан и Людмила')
