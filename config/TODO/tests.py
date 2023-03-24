@@ -5,11 +5,10 @@ from rest_framework.authtoken.admin import User
 from rest_framework.test import APIRequestFactory, force_authenticate, APIClient, APISimpleTestCase, APITestCase
 from mixer.backend.django import mixer
 
-import TODO
+
 from users.models import Users
 from users.views import UsersModelViewSet
 from .views import ProjectModelViewSet, ToDoModelViewSet
-from .models import Project, ToDo
 
 
 class TestAuthorViewSet(TestCase):
@@ -45,7 +44,7 @@ class TestAuthorViewSet(TestCase):
 class TestBookViewSet(APITestCase):
 
     def test_edit_mixer(self):
-        user = mixer.blend(Users)
+        mixer.blend(Users)
         User.objects.create_superuser('admin', 'admin@admin.com', 'admin123456')
         self.client.login(username='admin', password='admin123456')
         response = self.client.put(f'/api/users/1/', {'user_name': 'kyio2fox'})
