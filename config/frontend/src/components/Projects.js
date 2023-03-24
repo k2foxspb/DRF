@@ -3,9 +3,9 @@ import React from 'react'
 const ProjectsItem = ({item}) => {
     return (
         <tr>
-            <td>{item.id}</td>
             <td>{item.name}</td>
-            <td>{item.user.id}</td>
+            <td>{item.repository}</td>
+            <td>{item.description}</td>
         </tr>
     )
 }
