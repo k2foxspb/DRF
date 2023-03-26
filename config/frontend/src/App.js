@@ -20,12 +20,12 @@ class App extends React.Component {
     set_token(token) {
         const cookies = new Cookies()
         cookies.set('token', token)
-        this.setState({'token': token}, ()=>this.load_data())
+        this.setState({'token': token}, () => this.load_data())
 
     }
 
     is_authenticated() {
-        return this.state.token != ''
+        return this.state.token !== ''
     }
 
     logout() {
@@ -35,7 +35,7 @@ class App extends React.Component {
     get_token_from_storage() {
         const cookies = new Cookies()
         const token = cookies.get('token')
-        this.setState({'token': token}, ()=>this.load_data())
+        this.setState({'token': token}, () => this.load_data())
     }
 
     get_token(username, password) {
@@ -61,13 +61,13 @@ class App extends React.Component {
 
     load_data() {
         const headers = this.get_headers()
-        axios.get('http://127.0.0.1:8000/api/users/',{headers})
+        axios.get('http://127.0.0.1:8000/api/users/', {headers})
             .then(response => {
                 this.setState(
                     {'users': response.data}
                 )
             }).catch(error => console.log(error))
-        axios.get('http://127.0.0.1:8000/api/project/',{headers})
+        axios.get('http://127.0.0.1:8000/api/project/', {headers})
             .then(response => {
                 this.setState(
                     {'projects': response.data}
@@ -82,7 +82,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="App">
+            <div className={App}>
                 <BrowserRouter>
 
                     <nav>
