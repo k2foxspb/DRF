@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
     'drf_yasg',
     'rest_framework',
     'django_filters',
@@ -147,4 +148,8 @@ REST_FRAMEWORK = {
         'rest_framework.versioning.AcceptHeaderVersioning',
 
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
+
+GRAPHENE = {
+    "SCHEMA": "config.schema.schema"
 }
