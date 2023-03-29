@@ -16,14 +16,17 @@ class App extends React.Component {
         }
     }
 
-    createProject(id, name) {
+    createProject(name, id) {
         const headers = this.get_headers()
-        const data = { id: id,name: name}
-        axios.post(`http://127.0.0.1:8000/api/project/`, data, {headers})
+        const data = {id: id,name: name}
+        axios.post('http://127.0.0.1:8000/api/project/', data, {headers})
             .then(response => {
                 let new_project = response.data
-                new_project.user = this.state.users.filter((item) => item.id === new_project.user)[0]
-                this.setState({projects: [...this.state.projects, new_project]})
+                const id = this.state.projects.filter((item) => item.id ===
+                    new_project.id)[0]
+                new_project.id = id
+                this.setState({
+                    projects: [...this.state.projects, new_project]})
             }).catch(error => console.log(error))
     }
 
@@ -96,36 +99,36 @@ class App extends React.Component {
     }
 
     render() {
-        return (<div className='App'>
-                <BrowserRouter>
+        return (<div className="App">
+            <BrowserRouter>
 
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to='/'>Users</Link>
-                            </li>
-                            <li>
-                                <Link to='/project'>Project</Link>
-                            </li>
-                            <li>
-                                {this.is_authenticated() ? <button
-                                    onClick={() => this.logout()}>Logout</button> : <Link to='/login'>Login</Link>}
-                            </li>
-                        </ul>
-                    </nav>
-                    <Routes>
-                        <Route path='/' Component={() => <UserList items={this.state.users}/>}/>
-                        <Route path='/project/create' Component={() => <ProjectForm
-                            createProject={(id, name) => this.createProject(id, name)}/>}/>
-                        <Route path='/project'
-                               Component={() => <ProjectList items={this.state.projects}
-                                                             deleteProject={(id) => this.deleteProject(id)}/>}/>
-                        <Route exact path='/login' Component={() => <LoginForm
-                            get_token={(username, password) => this.get_token(username, password)}/>}/>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to='/'>Users</Link>
+                        </li>
+                        <li>
+                            <Link to='/project'>Project</Link>
+                        </li>
+                        <li>
+                            {this.is_authenticated() ? <button
+                                onClick={() => this.logout()}>Logout</button> : <Link to='/login'>Login</Link>}
+                        </li>
+                    </ul>
+                </nav>
+                <Routes>
+                    <Route path='/' Component={() => <UserList items={this.state.users}/>}/>
+                    <Route path='/project/create' Component={() => <ProjectForm
+                        createProject={(name, id) => this.createProject(name, id)}/>}/>
+                    <Route path='/project'
+                           Component={() => <ProjectList items={this.state.projects}
+                                                         deleteProject={(id) => this.deleteProject(id)}/>}/>
+                    <Route exact path='/login' Component={() => <LoginForm
+                        get_token={(username, password) => this.get_token(username, password)}/>}/>
 
-                    </Routes>
-                </BrowserRouter>
-            </div>)
+                </Routes>
+            </BrowserRouter>
+        </div>)
     }
 }
 
