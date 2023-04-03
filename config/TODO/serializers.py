@@ -6,7 +6,7 @@ from TODO.models import Project, ToDo
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ('id', 'name')
 
 
 class ToDoSerializer(serializers.HyperlinkedModelSerializer):
