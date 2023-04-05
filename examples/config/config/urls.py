@@ -33,7 +33,7 @@ router.register(r'project', ProjectModelViewSet)
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Library",
+        title="config",
         default_version='0.1',
         description="Documentation to out project",
         contact=openapi.Contact(email="admin@admin.local"),
